@@ -4,7 +4,9 @@ include('../header.php');
 <div class="container-fluid">
     <div class="container bg-light p-3 border rounded-3 mt-3" style="max-width:500px;">
         <h5>Cadastro de usuário</h5>
-        <form action="" method="POST" >
+        
+        <form action="form_user.php" method="POST" >
+            <input type="hidden" name="cadastrar_usuario" value="cadastrar_usuario" >
             <div class="mb-3">
                 <label class="form-label">Nome</label>
                 <input type="text" class="form-control" id="nome" name="nome">
@@ -13,7 +15,6 @@ include('../header.php');
                 <label class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email">
             </div>
-            
             <button type="submit" class="btn btn-primary">Cadastrar</button>
         </form>
     </div>
