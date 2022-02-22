@@ -1,6 +1,6 @@
 <?php
-include('../header.php');
-include('../classes/Basic.class.php');
+include('header.php');
+include('classes/Basic.class.php');
 
 
 if($_GET['action'] == 'view'){

@@ -28,8 +28,8 @@
             Usuários
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="../usuarios/index.php">Listar</a></li>
-            <li><a class="dropdown-item" href="../usuarios/cadastrar.php">Cadastrar</a></li>
+            <li><a class="dropdown-item" href="index.php">Listar</a></li>
+            <li><a class="dropdown-item" href="cadastrar.php">Cadastrar</a></li>
           </ul>
         </li>
         

@@ -1,6 +1,6 @@
 <?php
-include('../header.php');
-include('../classes/Basic.class.php');
+include('header.php');
+include('classes/Basic.class.php');
     $user = new Basic;
     $user = $user->list('usuarios');
     //echo '<pre>';

@@ -1,6 +1,6 @@
 <?php
-include('../header.php');
-include('../classes/Basic.class.php');
+include('header.php');
+include('classes/Basic.class.php');
 $data = new Basic;
 $data_cidade = new Basic;
 ?>

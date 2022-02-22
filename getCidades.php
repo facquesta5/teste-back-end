@@ -1,5 +1,5 @@
 <?php
-include('../classes/Basic.class.php');
+include('classes/Basic.class.php');
 
 $dados = new Basic;
 $tabela = $_POST['tabela'];

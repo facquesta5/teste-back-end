@@ -1,5 +1,5 @@
 <?php
-include('../classes/Basic.class.php');
+include('classes/Basic.class.php');
 
 if(isset($_POST['cadastrar_usuario'])){
     $user = new Basic;
