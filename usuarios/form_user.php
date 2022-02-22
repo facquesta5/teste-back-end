@@ -36,30 +36,23 @@ if(isset($_POST['editar_usuario'])){
         'estado_id' => $_POST['estado_id'],
         'cidade_id' => $_POST['cidade_id']
     ]; 
-    //echo '<pre>';
-    //print_r($endereco);
-    //die();
-    $endereco = $user->edit('enderecos', $endereco, $_POST['endereco_id']);
-    
-    /*$datos_pessoais = [
+    $endereco = $user->edit('enderecos', 'id', $endereco, $_POST['endereco_id']);
+    $dados_pessoais = [
         'nome' => $_POST['nome'],
         'email' => $_POST['email']
     ];
-    $datos_pessoais = $user->edit('usuarios', $datos_pessoais, $id);
-*/
+    
+    $dados_pessoais = $user->edit('usuarios', 'endereco_id', $dados_pessoais, $_POST['endereco_id']);
     header('Location: index.php');
 }
 
 if($_GET['action'] == 'delete'){
     $user = new Basic; 
-    $deleta_usuario = $user->delete('usuarios', $_GET['id']);
+    $deleta_usuario = $user->delete('usuarios', 'id', $_GET['id']);
+    $deleta_usuario = $user->delete('enderecos', 'id', $_GET['endereco_id']);
+    header('Location: index.php');
 }
-if($_GET['action'] == 'view'){
-    $user = new Basic; 
-    $detalhes_usuario = $user->view($_GET['id']);
-    echo '<pre>';
-    print_r($detalhes_usuario);
-}
+
 
 
 

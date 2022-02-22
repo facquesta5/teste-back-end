@@ -3,7 +3,8 @@ include('../header.php');
 include('../classes/Basic.class.php');
     $user = new Basic;
     $user = $user->list('usuarios');
-
+    //echo '<pre>';
+    //print_r($user);
 ?>
 
 <div class="container-fluid">
@@ -17,7 +18,7 @@ include('../classes/Basic.class.php');
             </thead>
             <tbody>
                 <tr>
-                    <td>Quantidade de usuários por Estado: <br>
+                    <td><strong>Quantidade de usuários por Estado: </strong><br>
                     <?php 
                         $data = new Basic;
                         $cidades = $data->porEstado();
@@ -29,7 +30,7 @@ include('../classes/Basic.class.php');
                         }
                         ?> 
                     </td>
-                    <td>Quantidade de usuários por Cidade: <br>
+                    <td><strong>Quantidade de usuários por Cidade: </strong><br>
                     <?php 
                         $data = new Basic;
                         $cidades = $data->porCidade();
@@ -63,13 +64,14 @@ include('../classes/Basic.class.php');
             </thead>
             <tbody>
                 <?php 
+                
                 foreach( $user as $k => $v){
                 ?>
                 <tr class="text-center">
                     <td><?php echo $v['nome']; ?></td>
                     <td><?php echo $v['email']; ?></td>
                     <td class="text-center">
-                        <a href="form_user.php?action=view&id=<?php echo $v['id']; ?>">
+                        <a href="detalhe.php?action=view&id=<?php echo $v['id']; ?>">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -79,14 +81,12 @@ include('../classes/Basic.class.php');
                         </i></a>
                     </td>
                     <td class="text-center">
-                        <a href="form_user.php?action=delete&id=<?php echo $v['id']; ?>"
+                        <a href="form_user.php?action=delete&id=<?php echo $v['id']; ?>&endereco_id=<?php echo $v['endereco_id']; ?>"
                             onclick="return confirm('Deseja mesmo excluir o usuário');">
                             <i class="fas fa-trash"></i>
                         </a>
                     </td>       
                 </tr>
-
-                
                 <?php 
                 }
                 ?>
