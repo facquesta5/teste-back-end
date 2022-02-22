@@ -9,6 +9,7 @@
                 echo "Connection failed: " . $e->getMessage();
               }
         }
+
         public function create($table, $data){
             foreach($data as $key => $value){
                 $colunas[] = "$key";
@@ -22,7 +23,7 @@
 
             return $this->conn->lastInsertId();
         }
-        
+
         public function edit($table, $match, $data, $id){
             foreach($data as $key => $value){
                 $dados[] = "$key=:$key"; 
@@ -35,12 +36,18 @@
 
             return $this->conn->lastInsertId();
         }
-
+        
+        public function delete($table, $match, $id){
+            $this->conn->prepare("DELETE FROM $table WHERE $match=?")->execute([$id]);
+            header('Location: index.php');
+        }
+        
         public function list($table){
             $data = $this->conn->query("SELECT * FROM $table")->fetchAll();
 
             return $data;
         } 
+
         public function detalhesUsuario($id){
             $stmt = $this->conn->prepare("SELECT distinct(usuarios.id), usuarios.nome, usuarios.email,
             enderecos.rua, enderecos.numero, enderecos.bairro, enderecos.cep, enderecos.id as endereco_id, 
@@ -57,7 +64,7 @@
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             return $data;
-        }       
+        }     
 
         public function selectById($table, $id){
             $stmt = $this->conn->prepare("SELECT * FROM $table WHERE id=:id");
@@ -66,6 +73,7 @@
 
             return $user;
         }
+
         public function getCidades($table, $id){ //retorna as cidades no ajax
             $stmt = $this->conn->prepare("SELECT * FROM $table WHERE estado_id = :id");
             $stmt->execute(['id' => $id]); 
@@ -73,6 +81,7 @@
 
             return json_encode($data);
         }
+
         public function listCidades($table, $id){ //retorna as cidades no edit
             $stmt = $this->conn->prepare("SELECT * FROM $table WHERE estado_id = :id");
             $stmt->execute(['id' => $id]); 
@@ -80,12 +89,7 @@
 
             return $data;
         }
-    
-        public function delete($table, $match, $id){
-            $this->conn->prepare("DELETE FROM $table WHERE $match=?")->execute([$id]);
-            header('Location: index.php');
-        }
-        
+
         public function view($id){
             $stmt = $this->conn->prepare("SELECT usuarios.nome, usuarios.email, usuarios.endereco_id,
             enderecos.rua, enderecos.numero, enderecos.complemento, enderecos.bairro, enderecos.cep,
@@ -115,7 +119,7 @@
 
             return $data;
         }
-        
+
         public function PorCidade(){
             $data = $this->conn->query("SELECT cidades.nome as cidade, COUNT(cidades.nome) as usuarios 
             FROM enderecos 

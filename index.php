@@ -58,6 +58,7 @@ include('classes/Basic.class.php');
                 <tr class="text-center">
                     <th>Nome</th>
                     <th>Email</th>
+                    <th class="text-center">Detalhes</th>
                     <th class="text-center">Alterar</th>
                     <th class="text-center">Excluir</th>
                 </tr>
